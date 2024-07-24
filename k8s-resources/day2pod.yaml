@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: amitpod1
+    v1: amitv1
+  name: amitpod1
+spec:
+  containers:
+  - image: docker.io/amitslj05/kubernetestraining:nginixappv1
+    name: amitpod1
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

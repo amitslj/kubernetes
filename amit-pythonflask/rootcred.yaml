@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  amitrootkey: QW1pdEV4YW1wbGVAMTIzNDU=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: amitdb-root-cred

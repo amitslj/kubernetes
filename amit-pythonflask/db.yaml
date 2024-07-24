@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: amit-db
+  name: amit-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amit-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: amit-db
+    spec:
+      nodeName: ip-192-168-85-238.ec2.internal
+      volumes:
+      - name: amitvol1
+        persistentVolumeClaim: 
+          claimName: amit-pvc
+      containers:
+      - image: mysql:8.0
+        name: mysql
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: amitvol1
+          mountPath: /var/lib/mysql/
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: amitdb-root-cred
+              key: amitrootkey
+        - name: MYSQL_DATABASE
+          value: amitdb
+        resources:
+          limits:
+            memory: 800M
+            cpu: 700m
+status: {}

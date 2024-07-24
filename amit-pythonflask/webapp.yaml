@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: amit-faskapp
+  name: amit-faskapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amit-faskapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: amit-faskapp
+    spec:
+      containers:
+      - image: public.ecr.aws/h7s5d3t1/rocheflask:amitappv1health
+        name: rocheflask
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        envFrom:
+        - secretRef:
+            name: flask-db-secret
+        env:
+        - name: MYSQL_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: amit-db-svc
+              key: dbconnect
+        resources:
+          limits:
+            cpu: 100m
+            memory: 150M
+status: {}

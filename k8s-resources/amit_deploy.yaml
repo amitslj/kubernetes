@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: amit-deploy
+  name: amit-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amit-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: amit-deploy
+    spec:
+      containers:
+      - image: docker.io/amitslj05/kubernetestraining:nginixappv1
+        name: kubernetestraining
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

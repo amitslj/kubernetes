@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: amit-splunk
+  name: amit-splunk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amit-splunk
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: amit-splunk
+    spec:
+      containers:
+      - image: splunk/splunk:latest
+        name: splunk
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: amisplunk-secret
+        env:
+        - name: SPLUNK_START_ARGS
+          valueFrom:
+            configMapKeyRef:
+              name: amitsplunk-cm
+              key: SPLUNK_START_ARGS
+        resources: {}
+status: {}

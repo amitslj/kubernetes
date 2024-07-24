@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    image: amitflask:appv1
+    build: .
+    ports:
+      - "5011:5000"
+    environment:
+      FLASK_ENV: development
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: Example12345
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Example12345
+    volumes:
+      - amit_mysql_data:/var/lib/mysql
+
+volumes:
+  amit_mysql_data:

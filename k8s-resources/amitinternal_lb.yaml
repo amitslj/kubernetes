@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: amitlb1
+  name: amitlb1
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: amitpod1
+    v1: amitv1
+  type: LoadBalancer
+status:
+  loadBalancer: {}

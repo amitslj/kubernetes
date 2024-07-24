@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: amit-pv1
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 7Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /amit/dbdatanew
+    type: DirectoryOrCreate
+

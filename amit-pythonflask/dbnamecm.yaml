@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  dbconnect: amitdblb
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: amit-db-svc

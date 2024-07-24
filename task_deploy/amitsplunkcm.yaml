@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  SPLUNK_START_ARGS: --accept-license
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: amitsplunk-cm
